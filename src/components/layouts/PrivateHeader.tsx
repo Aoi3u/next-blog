@@ -5,7 +5,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import Setting from "./Setting";
+import Setting from "@/components/layouts/Setting";
 import { auth } from "@/auth";
 
 export default async function PrivateHeader() {

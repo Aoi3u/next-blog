@@ -1,0 +1,76 @@
+"use server";
+
+import bcryptjs from "bcryptjs";
+import { registerSchema } from "@/validations/user";
+import { prisma } from "../prisma";
+import { signIn } from "@/auth";
+import { redirect } from "next/navigation";
+
+type ActionState = {
+  success: boolean;
+  errors: Record<string, string[]>;
+};
+
+// バリデーションエラー処理
+function handleValidationError(error: any): ActionState {
+  const { fieldErrors, formErrors } = error.flatten();
+  // zodの仕様でパスワード一致確認のエラーは formErrorsで渡ってくる
+  // formErrorsがある場合は、confirmPasswordフィールドにエラーを追加
+  if (formErrors.length > 0) {
+    return {
+      success: false,
+      errors: { ...fieldErrors, confirmPassword: formErrors },
+    };
+  }
+  return { success: false, errors: fieldErrors };
+}
+// カスタムエラー処理
+function handleError(customErrors: Record<string, string[]>): ActionState {
+  return { success: false, errors: customErrors };
+}
+
+export default async function createUser(
+  prevState: ActionState,
+  formData: FormData
+): Promise<ActionState> {
+  // フォームからの情報を取得
+  const rowFormData = Object.fromEntries(
+    ["name", "email", "password", "confirmPassword"].map((field) => [
+      field,
+      formData.get(field),
+    ])
+  ) as Record<string, string>;
+
+  // バリデーション
+  const validationResult = registerSchema.safeParse(rowFormData);
+  if (!validationResult.success) {
+    return handleValidationError(validationResult.error);
+  }
+
+  // DBにメール登録あるか確認
+  const existingUser = await prisma.user.findUnique({
+    where: { email: rowFormData.email },
+  });
+  if (existingUser) {
+    return handleError({
+      email: ["このメールアドレスはすでに登録されています"],
+    });
+  }
+
+  // DBにユーザ登録
+  const hashedPassword = await bcryptjs.hash(rowFormData.password, 12);
+  await prisma.user.create({
+    data: {
+      name: rowFormData.name,
+      email: rowFormData.email,
+      password: hashedPassword,
+    },
+  });
+
+  // dashboardにリダイレクト
+  await signIn("credentials", {
+    ...Object.fromEntries(formData),
+    redirect: false,
+  });
+  redirect("/dashboard");
+}
