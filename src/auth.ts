@@ -20,15 +20,28 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
           .object({ email: z.string().email(), password: z.string().min(8) })
           .safeParse(credentials);
 
-          if (parsedCredentials.success) {
-            const { email, password } = parsedCredentials.data;
-            const user = await getUser(email); // ユーザー取得
-            if (!user) return null;
-            const passwordsMatch = await bcryptjs.compare(password, user.password); // パスワード比較
-            if (passwordsMatch) return user;
-            }
-            return null;
+        if (parsedCredentials.success) {
+          const { email, password } = parsedCredentials.data;
+          const user = await getUser(email); // ユーザー取得
+          if (!user) return null;
+          const passwordsMatch = await bcryptjs.compare(
+            password,
+            user.password
+          ); // パスワード比較
+          if (passwordsMatch) return user;
+        }
+        return null;
       },
     }),
   ],
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = (token.id || token.sub || "") as string;
+        session.user.name = token.name ?? "";
+        session.user.email = token.email ?? "";
+      }
+      return session;
+    },
+  },
 });
