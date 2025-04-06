@@ -3,14 +3,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import React, { useState, useActionState, useEffect } from "react";
-import { createPost } from "@/lib/actions/createPost";
+import { updatePost } from "@/lib/actions/updatePost";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import TextareaAutosize from "react-textarea-autosize";
 import "highlight.js/styles/github.css";
 import Image from "next/image";
-import { string } from "zod";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type EditPostFormProps = {
   post: {
@@ -30,7 +30,7 @@ export default function EditPostForm({ post }: EditPostFormProps) {
   const [published, setPublished] = useState(post.published);
   const [imagePreview, setImagePreview] = useState(post.topImage);
 
-  const [state, formAction] = useActionState(createPost, {
+  const [state, formAction] = useActionState(updatePost, {
     success: false,
     errors: {},
   });
@@ -142,6 +142,20 @@ export default function EditPostForm({ post }: EditPostFormProps) {
             </ReactMarkdown>
           </div>
         )}
+        <RadioGroup
+          value={published.toString()}
+          name="published"
+          onValueChange={(value) => setPublished(value === "true")}
+        >
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="true" id="published-one" />
+            <Label htmlFor="published-one">公開</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="false" id="published-two" />
+            <Label htmlFor="published-two">非公開</Label>
+          </div>
+        </RadioGroup>
         <Button type="submit" className="bg-green-500 text-white">
           更新する
         </Button>
