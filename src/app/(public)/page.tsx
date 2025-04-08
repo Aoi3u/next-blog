@@ -1,4 +1,4 @@
-import PostCard from "@/components/post/PostCard";
+import PublicPostCard from "@/components/post/PublicPostCard";
 import { getPosts, searchPosts } from "@/lib/post";
 import { Post } from "@/types/post";
 import SearchBox from "@/components/post/SearchBox";
@@ -66,7 +66,7 @@ export default async function PostsPage({
             {posts.map((post) => (
               <div key={post.id} className="group">
                 <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
-                  <PostCard post={post} />
+                  <PublicPostCard post={post} />
                 </div>
               </div>
             ))}

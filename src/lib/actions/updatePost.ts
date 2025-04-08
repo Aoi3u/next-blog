@@ -59,5 +59,5 @@ export async function updatePost(
     },
   });
 
-  redirect("/dashboard");
+  redirect("/manage");
 }

@@ -16,8 +16,10 @@ export default async function DashBoardPage() {
   return (
     <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">作成記事一覧</h1>
-        <Button className="bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          作成記事一覧
+        </h1>
+        <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
           <Link
             href="/manage/posts/create"
             className="flex items-center space-x-2"

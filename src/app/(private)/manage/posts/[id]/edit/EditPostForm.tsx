@@ -11,6 +11,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import "highlight.js/styles/github.css";
 import Image from "next/image";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import Link from "next/link";
 
 type EditPostFormProps = {
   post: {
@@ -99,7 +100,6 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                 </p>
               )}
             </div>
-
             <div className="space-y-4">
               <Label
                 htmlFor="topImage"
@@ -133,7 +133,6 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                 </div>
               )}
             </div>
-
             <div className="space-y-2">
               <div className="flex justify-between items-center mb-2">
                 <Label
@@ -158,7 +157,6 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                 />
               </div>
             </div>
-
             <div className="bg-gray-50/70 p-6 rounded-xl border border-gray-100">
               <Label className="text-gray-700 font-semibold mb-4 block">
                 公開設定
@@ -190,20 +188,93 @@ export default function EditPostForm({ post }: EditPostFormProps) {
               </RadioGroup>
             </div>
 
-            <div className="flex justify-end items-center space-x-4 pt-6 border-t">
+            <div className="flex items-center justify-between pt-8 border-t">
               <Button
-                type="button"
-                onClick={() => setPreview(!preview)}
-                className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all px-6 rounded-lg shadow-sm"
+                asChild
+                variant="outline"
+                className="bg-white hover:bg-gray-50 text-gray-700 border-gray-200 hover:border-gray-300"
               >
-                {preview ? "プレビューを閉じる" : "プレビュー表示"}
+                <Link href="/manage" className="flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                  作成記事一覧に戻る
+                </Link>
               </Button>
-              <Button
-                type="submit"
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all px-8 rounded-lg shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-0.5"
-              >
-                更新する
-              </Button>
+              <div className="flex items-center gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setPreview(!preview)}
+                  className="bg-white hover:bg-gray-50 border-gray-200 hover:border-gray-300"
+                >
+                  {preview ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2"
+                    >
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mr-2"
+                    >
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                  {preview ? "プレビューを閉じる" : "プレビュー表示"}
+                </Button>
+                <Button
+                  type="submit"
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 px-6"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-2"
+                  >
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" />
+                    <polyline points="17 21 17 13 7 13 7 21" />
+                  </svg>
+                  更新する
+                </Button>
+              </div>
             </div>
 
             {preview && (
@@ -223,7 +294,6 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                 </div>
               </div>
             )}
-
             <input type="hidden" name="postId" value={post.id} />
             <input
               type="hidden"

@@ -13,5 +13,5 @@ export async function deletePost(postId: string): Promise<ActionState> {
     where: {id: postId}
   })
 
-  redirect("/dashboard");
+  redirect("/manage");
 }

@@ -97,7 +97,7 @@ export default async function PostPage({ params }: Params) {
                 variant="outline"
                 className="bg-white hover:bg-gray-50 text-gray-700 border-gray-200 hover:border-gray-300 transition-all duration-200"
               >
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/manage" className="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -111,7 +111,7 @@ export default async function PostPage({ params }: Params) {
                   >
                     <path d="m15 18-6-6 6-6" />
                   </svg>
-                  記事一覧に戻る
+                  作成記事一覧に戻る
                 </Link>
               </Button>
             </div>

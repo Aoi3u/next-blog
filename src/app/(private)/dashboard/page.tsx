@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import PostCard from "@/components/post/PostCard";
+import PrivatePostCard from "@/components/post/PrivatePostCard";
 import { getPosts, searchPosts } from "@/lib/post";
 import { Post } from "@/types/post";
 import DashboardSearchBox from "@/components/post/DashBoardSearchBox";
@@ -73,7 +73,7 @@ export default async function DashBoardPage({
             {posts.map((post) => (
               <div key={post.id} className="group">
                 <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl">
-                  <PostCard post={post} />
+                  <PrivatePostCard post={post} />
                 </div>
               </div>
             ))}

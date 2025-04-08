@@ -35,7 +35,7 @@ export default function Footer() {
           </nav> */}
 
           <div className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Blog. All rights reserved.
+            © {new Date().getFullYear()} Blog(仮).
           </div>
         </div>
       </div>

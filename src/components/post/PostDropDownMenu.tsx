@@ -32,7 +32,7 @@ export default function PostDropDownMenu({ postId }: { postId: string }) {
         <DropdownMenuContent className="w-48 py-1 bg-white rounded-lg shadow-lg border border-gray-100">
           <DropdownMenuItem asChild>
             <Link
-              href={`/manage/posts/${postId}`}
+              href={`/manage/posts/${postId}/detail`}
               className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
             >
               <svg
