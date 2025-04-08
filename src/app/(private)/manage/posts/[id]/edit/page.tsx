@@ -23,5 +23,6 @@ export default async function editPage({ params }: Params) {
   return (
     <div>
       <EditPostForm post={post} />
-    </div>);
+    </div>
+  );
 }

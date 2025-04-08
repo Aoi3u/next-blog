@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SearchBox() {
+export default function DashboardSearchBox() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const router = useRouter();
@@ -19,9 +19,9 @@ export default function SearchBox() {
 
   useEffect(() => {
     if (debouncedSearch.trim()) {
-      router.push(`/?search=${debouncedSearch.trim()}`);
+      router.push(`/dashboard/?search=${debouncedSearch.trim()}`);
     } else {
-      router.push("/");
+      router.push("/dashboard");
     }
   }, [debouncedSearch, router]);
 

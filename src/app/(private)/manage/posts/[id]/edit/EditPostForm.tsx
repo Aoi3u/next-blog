@@ -58,110 +58,181 @@ export default function EditPostForm({ post }: EditPostFormProps) {
   }, [imagePreview, post.topImage]);
 
   return (
-    <div className="container mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-4">新規記事作成</h1>
-      <form action={formAction} className="space-y-4">
-        <div>
-          <Label htmlFor="title">タイトル</Label>
-          <Input
-            type="text"
-            id="title"
-            name="title"
-            placeholder="タイトルを入力してください"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          {state.errors.title && (
-            <p className="text-red-500 text-sm mt-1">
-              {state.errors.title.join(",")}
-            </p>
-          )}
-        </div>
-        <div>
-          <Label htmlFor="topImage">表示画像</Label>
-          <Input
-            type="file"
-            id="topImage"
-            accept="image/*"
-            name="topImage"
-            onChange={handleImageChange}
-          />
-          {imagePreview && (
-            <div className="mt-2">
-              <Image
-                src={imagePreview}
-                alt={post.title}
-                width={0}
-                height={0}
-                sizes="200px"
-                className="w-[200px]"
-                priority
+    <div className="container mx-auto py-12 px-4">
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100">
+        <div className="p-8">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8">
+            記事の編集
+          </h1>
+
+          <form action={formAction} className="space-y-8">
+            <div className="space-y-2">
+              <Label
+                htmlFor="title"
+                className="text-gray-700 font-semibold inline-block"
+              >
+                タイトル
+              </Label>
+              <Input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="魅力的なタイトルを入力してください"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full border-gray-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all duration-200 bg-gray-50/50 hover:bg-white"
               />
+              {state.errors.title && (
+                <p className="text-red-500 text-sm mt-2 flex items-center animate-fadeIn">
+                  <svg
+                    className="w-4 h-4 mr-1.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {state.errors.title.join(",")}
+                </p>
+              )}
             </div>
-          )}
-          {state.errors.topImage && (
-            <p className="text-red-500 text-sm mt-1">
-              {state.errors.topImage.join(",")}
-            </p>
-          )}
+
+            <div className="space-y-4">
+              <Label
+                htmlFor="topImage"
+                className="text-gray-700 font-semibold inline-block"
+              >
+                表示画像
+              </Label>
+              <div className="relative">
+                <Input
+                  type="file"
+                  id="topImage"
+                  accept="image/*"
+                  name="topImage"
+                  onChange={handleImageChange}
+                  className="w-full border-2 border-dashed border-gray-200 rounded-lg px-4 py-8 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all duration-200 hover:border-indigo-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-600 hover:file:bg-indigo-100"
+                />
+              </div>
+              {imagePreview && (
+                <div className="mt-4 relative group">
+                  <div className="overflow-hidden rounded-lg">
+                    <Image
+                      src={imagePreview}
+                      alt={post.title}
+                      width={0}
+                      height={0}
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="w-full max-w-[400px] rounded-lg transform transition-transform group-hover:scale-105"
+                      priority
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex justify-between items-center mb-2">
+                <Label
+                  htmlFor="content"
+                  className="text-gray-700 font-semibold"
+                >
+                  内容
+                </Label>
+                <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                  {contentLength} 文字
+                </span>
+              </div>
+              <div className="relative">
+                <TextareaAutosize
+                  id="content"
+                  name="content"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all duration-200 bg-gray-50/50 hover:bg-white font-mono text-gray-800"
+                  placeholder="# Markdown形式で記事を書いてみましょう"
+                  minRows={12}
+                  value={content}
+                  onChange={handleContentChange}
+                />
+              </div>
+            </div>
+
+            <div className="bg-gray-50/70 p-6 rounded-xl border border-gray-100">
+              <Label className="text-gray-700 font-semibold mb-4 block">
+                公開設定
+              </Label>
+              <RadioGroup
+                value={published.toString()}
+                name="published"
+                onValueChange={(value) => setPublished(value === "true")}
+                className="space-y-3"
+              >
+                <div className="flex items-center space-x-3 transition-colors hover:bg-white p-2 rounded-lg">
+                  <RadioGroupItem value="true" id="published-one" />
+                  <Label
+                    htmlFor="published-one"
+                    className="text-sm cursor-pointer"
+                  >
+                    公開
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-3 transition-colors hover:bg-white p-2 rounded-lg">
+                  <RadioGroupItem value="false" id="published-two" />
+                  <Label
+                    htmlFor="published-two"
+                    className="text-sm cursor-pointer"
+                  >
+                    非公開
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            <div className="flex justify-end items-center space-x-4 pt-6 border-t">
+              <Button
+                type="button"
+                onClick={() => setPreview(!preview)}
+                className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all px-6 rounded-lg shadow-sm"
+              >
+                {preview ? "プレビューを閉じる" : "プレビュー表示"}
+              </Button>
+              <Button
+                type="submit"
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all px-8 rounded-lg shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-0.5"
+              >
+                更新する
+              </Button>
+            </div>
+
+            {preview && (
+              <div className="mt-8 border rounded-xl p-8 bg-gray-50/50 backdrop-blur-sm animate-fadeIn">
+                <h2 className="text-xl font-bold text-gray-900 mb-6 pb-4 border-b">
+                  プレビュー
+                </h2>
+                <div className="prose prose-indigo prose-lg max-w-none">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeHighlight]}
+                    skipHtml={false}
+                    unwrapDisallowed={true}
+                  >
+                    {content}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            )}
+
+            <input type="hidden" name="postId" value={post.id} />
+            <input
+              type="hidden"
+              name="oldImageUrl"
+              value={post.topImage || ""}
+            />
+          </form>
         </div>
-        <div>
-          <Label htmlFor="content">内容</Label>
-          <TextareaAutosize
-            id="content"
-            name="content"
-            className="w-full border px-3 py-1 rounded-xl"
-            placeholder="Markdown形式で入力してください"
-            minRows={8}
-            value={content}
-            onChange={handleContentChange}
-          />
-          {state.errors.content && (
-            <p className="text-red-500 text-sm mt-1">
-              {state.errors.content.join(",")}
-            </p>
-          )}
-        </div>
-        <div className="text-right text-sm text-gray-500 mt-1">
-          文字数: {contentLength}
-        </div>
-        <div>
-          <Button type="button" onClick={() => setPreview(!preview)}>
-            {preview ? "閉じる" : "プレビュー表示"}
-          </Button>
-        </div>
-        {preview && (
-          <div className="w-full border p-4 bg-gray-50 rounded-xl prose">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
-              skipHtml={false}
-              unwrapDisallowed={true}
-            >
-              {content}
-            </ReactMarkdown>
-          </div>
-        )}
-        <RadioGroup
-          value={published.toString()}
-          name="published"
-          onValueChange={(value) => setPublished(value === "true")}
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="true" id="published-one" />
-            <Label htmlFor="published-one">公開</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="false" id="published-two" />
-            <Label htmlFor="published-two">非公開</Label>
-          </div>
-        </RadioGroup>
-        <Button type="submit" className="bg-green-500 text-white">
-          更新する
-        </Button>
-        <input type="hidden" name="postId" value={post.id} />
-        <input type="hidden" name="oldImageUrl" value={post.topImage || ""} />
-      </form>
+      </div>
     </div>
   );
 }

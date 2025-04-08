@@ -31,9 +31,17 @@ export default function PostCard({ post }: PostCardProps) {
           <p className="text-sm text-gray-600 mb-2 line-clamp-2">
             {post.content}
           </p>
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <span>{post.author.name}</span>
-            <time>
+          <div className="flex items-center justify-between text-xs">
+            <span className="flex items-center text-gray-600">
+              <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+              </svg>
+              {post.author.name}
+            </span>
+            <time className="text-gray-500 flex items-center">
+              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
               {formatDistanceToNow(new Date(post.createdAt), {
                 addSuffix: true,
                 locale: ja,
