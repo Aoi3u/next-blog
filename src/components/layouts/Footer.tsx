@@ -10,8 +10,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="container mx-auto px-4 lg:px-8 py-8">
-        <div className="flex flex-col items-center space-y-4">
+      <div className="container mx-auto px-4 lg:px-8 py-4">
+        <div className="flex flex-col items-center space-y-2">
           <Link href="/">
             <span className="font-bold text-xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 bg-clip-text text-transparent">
               Blog(仮)
