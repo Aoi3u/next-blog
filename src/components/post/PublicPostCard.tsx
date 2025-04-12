@@ -25,7 +25,7 @@ export default function PublicPostCard({ post }: PostCardProps) {
           <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-lg" />
         )}
         <CardHeader className="p-6">
-          <CardTitle className="text-xl font-bold text-gray-800 line-clamp-2 mb-2 group-hover:text-indigo-600 transition-colors duration-200">
+          <CardTitle className="text-xl font-bold text-gray-800 line-clamp-2 mb-2 group-hover:text-indigo-500 transition-colors duration-200">
             {post.title}
           </CardTitle>
         </CardHeader>

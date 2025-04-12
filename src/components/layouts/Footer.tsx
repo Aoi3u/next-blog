@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="flex flex-col items-center space-y-2">
           <Link href="/">
             <span className="font-bold text-xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              Blog(仮)
+              Tech Notes from Waseda
             </span>
           </Link>
 
@@ -35,7 +35,7 @@ export default function Footer() {
           </nav> */}
 
           <div className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Blog(仮).
+            © {new Date().getFullYear()} Tech Notes from Waseda.
           </div>
         </div>
       </div>

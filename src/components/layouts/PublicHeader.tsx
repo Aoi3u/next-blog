@@ -19,7 +19,7 @@ export default function PublicHeader() {
                   <Link href="/" legacyBehavior passHref>
                     <NavigationMenuLink className="group inline-flex items-center">
                       <span className="font-bold text-2xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent group-hover:from-indigo-700 group-hover:to-purple-700 transition-all duration-300 ease-out ">
-                        Blog(仮)
+                      Tech Notes from Waseda
                       </span>
                     </NavigationMenuLink>
                   </Link>
