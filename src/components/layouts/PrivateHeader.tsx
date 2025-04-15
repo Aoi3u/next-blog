@@ -23,7 +23,7 @@ export default async function PrivateHeader() {
                   <Link href="/dashboard" legacyBehavior passHref>
                     <NavigationMenuLink className="group inline-flex items-center">
                       <div className="flex items-center space-x-2">
-                        <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800 bg-clip-text text-transparent group-hover:from-indigo-700 group-hover:via-indigo-800 group-hover:to-indigo-900 transition-all duration-300 ease-out">
+                        <span className="font-bold text-2xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent group-hover:from-indigo-700 group-hover:to-purple-700 transition-all duration-300 ease-out ">
                           Tech Notes from Waseda
                         </span>
                       </div>
