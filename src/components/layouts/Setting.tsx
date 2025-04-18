@@ -18,7 +18,7 @@ export default function Setting({ session }: { session: Session }) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="hover:cursor-pointer">
         <Button
           variant="ghost"
           className="flex items-center space-x-3 px-4 py-3 rounded-full hover:bg-gray-100/80 text-black transition-all duration-300 ease-in-out"
