@@ -168,7 +168,11 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                 className="space-y-3"
               >
                 <div className="flex items-center space-x-3 transition-colors hover:bg-white p-2 rounded-lg">
-                  <RadioGroupItem value="true" id="published-one" />
+                  <RadioGroupItem
+                    value="true"
+                    id="published-one"
+                    className="hover:cursor-pointer"
+                  />
                   <Label
                     htmlFor="published-one"
                     className="text-sm cursor-pointer"
@@ -177,7 +181,11 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 transition-colors hover:bg-white p-2 rounded-lg">
-                  <RadioGroupItem value="false" id="published-two" />
+                  <RadioGroupItem
+                    value="false"
+                    id="published-two"
+                    className="hover:cursor-pointer"
+                  />
                   <Label
                     htmlFor="published-two"
                     className="text-sm cursor-pointer"
