@@ -3,6 +3,8 @@ import PrivatePostCard from "@/components/post/PrivatePostCard";
 import { getPosts, searchPosts } from "@/lib/post";
 import { Post } from "@/types/post";
 import DashboardSearchBox from "@/components/post/DashBoardSearchBox";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type SearchParams = {
   search?: string;
@@ -79,6 +81,14 @@ export default async function DashBoardPage({
             ))}
           </div>
         )}
+        <Button className="fixed bottom-10 right-10 w-18 h-18 md:w-20 md:h-20 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 p-0">
+          <Link
+            href="/manage/posts/create"
+            className="flex items-center justify-center w-full h-full"
+          >
+            <span className="text-white text-2xl md:text-3xl">＋</span>
+          </Link>
+        </Button>
       </div>
     </main>
   );
