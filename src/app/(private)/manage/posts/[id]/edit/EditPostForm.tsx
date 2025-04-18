@@ -216,7 +216,7 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                   type="button"
                   variant="outline"
                   onClick={() => setPreview(!preview)}
-                  className="bg-white hover:bg-gray-50 border-gray-200 hover:border-gray-300"
+                  className="bg-white hover:cursor-pointer hover:bg-gray-50 border-gray-200 hover:border-gray-300"
                 >
                   {preview ? (
                     <svg
@@ -255,7 +255,7 @@ export default function EditPostForm({ post }: EditPostFormProps) {
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 px-6"
+                  className="hover:cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 px-6"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

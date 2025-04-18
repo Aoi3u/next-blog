@@ -150,7 +150,7 @@ export default function RegisterForm() {
           </div>
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-0.5"
+            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 hover:cursor-pointer text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-0.5"
           >
             アカウントを作成
           </Button>

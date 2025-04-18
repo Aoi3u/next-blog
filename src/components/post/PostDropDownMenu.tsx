@@ -24,7 +24,7 @@ export default function PostDropDownMenu({ postId }: { postId: string }) {
   return (
     <>
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
-        <DropdownMenuTrigger className="inline-flex items-center justify-center w-8 h-8 text-gray-500 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200">
+        <DropdownMenuTrigger className="inline-flex items-center justify-center w-8 h-8 text-gray-500 rounded-md hover:bg-gray-100 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200">
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
           </svg>
@@ -33,7 +33,7 @@ export default function PostDropDownMenu({ postId }: { postId: string }) {
           <DropdownMenuItem asChild>
             <Link
               href={`/manage/posts/${postId}/detail`}
-              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:cursor-pointer"
             >
               <svg
                 className="mr-3 h-4 w-4 text-gray-400"
@@ -60,7 +60,7 @@ export default function PostDropDownMenu({ postId }: { postId: string }) {
           <DropdownMenuItem asChild>
             <Link
               href={`/manage/posts/${postId}/edit`}
-              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 hover:cursor-pointer"
             >
               <svg
                 className="mr-3 h-4 w-4 text-gray-400"
