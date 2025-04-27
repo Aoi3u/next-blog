@@ -17,16 +17,31 @@ export async function getPosts() {
 }
 
 export async function getPost(id: string) {
-  return await prisma.post.findUnique({
+  const post = await prisma.post.findUnique({
     where: { id },
     include: {
       author: {
         select: {
           name: true,
+          email: true,
+        },
+      },
+      comments: {
+        include: {
+          author: {
+            select: {
+              name: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       },
     },
   });
+
+  return post;
 }
 
 export async function searchPosts(search: string) {

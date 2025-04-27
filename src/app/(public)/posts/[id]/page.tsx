@@ -10,6 +10,9 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import CommentForm from "@/components/comment/CommentForm";
+import CommentList from "@/components/comment/CommentList";
+import { auth } from "@/auth";
 
 type Params = {
   params: Promise<{ id: string }>;
@@ -18,6 +21,7 @@ type Params = {
 export default async function PostPage({ params }: Params) {
   const { id } = await params;
   const post = await getPost(id);
+  const session = await auth();
 
   if (!post) {
     notFound();
@@ -117,6 +121,25 @@ export default async function PostPage({ params }: Params) {
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8">コメント</h2>
+          {session ? (
+            <CommentForm postId={post.id} />
+          ) : (
+            <p className="text-gray-600">
+              コメントを投稿するには
+              <Link href="/login" className="text-indigo-600 hover:underline">
+                ログイン
+              </Link>
+              してください
+            </p>
+          )}
+          <div className="mt-12">
+            <CommentList comments={post.comments} />
+          </div>
+        </div>
       </div>
     </main>
   );
