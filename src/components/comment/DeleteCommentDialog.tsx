@@ -69,12 +69,12 @@ export default function DeleteCommentDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="space-x-3">
-          <AlertDialogCancel className="bg-white hover:bg-gray-50 text-gray-600">
+          <AlertDialogCancel className="bg-white hover:cursor-pointer hover:bg-gray-50 text-gray-600">
             キャンセル
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={handleDelete}
-            className="bg-red-500 hover:bg-red-600 text-white transition-colors duration-200"
+            className="bg-red-500 hover:cursor-pointer hover:bg-red-600 text-white transition-colors duration-200"
           >
             削除する
           </AlertDialogAction>

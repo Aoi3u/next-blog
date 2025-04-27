@@ -51,7 +51,7 @@ export default function CommentForm({ postId }: CommentFormProps) {
       <input type="hidden" name="postId" value={postId} />
       <Button
         type="submit"
-        className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700"
+        className="bg-gradient-to-r hover:cursor-pointer from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700"
       >
         コメントを投稿
       </Button>

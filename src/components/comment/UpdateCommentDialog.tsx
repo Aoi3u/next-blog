@@ -74,13 +74,14 @@ export default function EditCommentDialog({
             <Button
               type="button"
               variant="outline"
+              className="hover:cursor-pointer"
               onClick={() => onOpenChange(false)}
             >
               キャンセル
             </Button>
             <Button
               type="submit"
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700"
+              className="bg-gradient-to-r hover:cursor-pointer from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700"
             >
               更新する
             </Button>

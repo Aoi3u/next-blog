@@ -19,13 +19,17 @@ export default function CommentList({
   const [selectedComment, setSelectedComment] = useState<string | null>(null);
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
 
+  const sortedComments = [...comments].sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  );
+
   if (comments.length === 0) {
     return <p className="text-gray-500">まだコメントはありません。</p>;
   }
 
   return (
     <div className="space-y-6">
-      {comments.map((comment) => (
+      {sortedComments.map((comment) => (
         <div
           key={comment.id}
           className="bg-white p-6 rounded-lg border border-gray-100 space-y-4"
@@ -42,17 +46,11 @@ export default function CommentList({
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <time className="text-sm text-gray-500">
-                {formatDistanceToNow(new Date(comment.createdAt), {
-                  addSuffix: true,
-                  locale: ja,
-                })}
-              </time>
               {currentUserId === comment.authorId && (
                 <div className="flex space-x-2">
                   <button
                     onClick={() => setEditingComment(comment)}
-                    className="text-gray-400 hover:text-indigo-500 transition-colors"
+                    className="text-gray-400 hover:cursor-pointer hover:text-green-500 transition-colors"
                   >
                     <svg
                       className="w-5 h-5"
@@ -70,7 +68,7 @@ export default function CommentList({
                   </button>
                   <button
                     onClick={() => setSelectedComment(comment.id)}
-                    className="text-gray-400 hover:text-red-500 transition-colors"
+                    className="text-gray-400 hover:cursor-pointer hover:text-red-500 transition-colors"
                   >
                     <svg
                       className="w-5 h-5"
@@ -88,6 +86,12 @@ export default function CommentList({
                   </button>
                 </div>
               )}
+              <time className="text-sm text-gray-500">
+                {formatDistanceToNow(new Date(comment.createdAt), {
+                  addSuffix: true,
+                  locale: ja,
+                })}
+              </time>
             </div>
           </div>
           <p className="text-gray-600 whitespace-pre-wrap">{comment.content}</p>
