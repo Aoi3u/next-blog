@@ -22,6 +22,7 @@ export default async function PostPage({ params }: Params) {
   const { id } = await params;
   const post = await getPost(id);
   const session = await auth();
+  const currentUserId = session?.user?.id;
 
   if (!post) {
     notFound();
@@ -137,7 +138,10 @@ export default async function PostPage({ params }: Params) {
             </p>
           )}
           <div className="mt-12">
-            <CommentList comments={post.comments} />
+            <CommentList
+              comments={post.comments}
+              currentUserId={currentUserId}
+            />
           </div>
         </div>
       </div>
