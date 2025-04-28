@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { redirect } from "next/navigation";
 import { prisma } from "../prisma";
@@ -9,9 +9,15 @@ type ActionState = {
 };
 
 export async function deletePost(postId: string): Promise<ActionState> {
+  await prisma.comment.deleteMany({
+    where: {
+      postId: postId,
+    },
+  });
+
   await prisma.post.delete({
-    where: {id: postId}
-  })
+    where: { id: postId },
+  });
 
   redirect("/manage");
 }
