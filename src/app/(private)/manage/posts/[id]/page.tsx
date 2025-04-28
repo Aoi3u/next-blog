@@ -29,7 +29,7 @@ export default async function PostPage({ params }: Params) {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-bpy-12">
+    <main className="min-h-screen py-12">
       <div className="container max-w-5xl mx-auto px-4">
         <Card className="overflow-hidden shadow-xl border border-gray-100 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
           {post.topImage && (
