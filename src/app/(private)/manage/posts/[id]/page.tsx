@@ -99,7 +99,7 @@ export default async function PostPage({ params }: Params) {
                 variant="outline"
                 className="bg-white/80 hover:bg-gray-50 text-gray-700 border-gray-200 hover:border-gray-300 transition-all duration-200 backdrop-blur-sm"
               >
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/dashboard" className="flex items-center gap-2">
                   <svg
                     className="w-4 h-4"
                     fill="none"
