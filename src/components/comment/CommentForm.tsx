@@ -19,10 +19,8 @@ export default function CommentForm({ postId }: CommentFormProps) {
 
   const handleSubmit = async (formData: FormData) => {
     try {
-      const result = await formAction(formData);
-      if (result?.success) {
-        router.refresh();
-      }
+      await formAction(formData);
+      router.refresh();
     } catch (error) {
       console.error("Comment submission error:", error);
     }
